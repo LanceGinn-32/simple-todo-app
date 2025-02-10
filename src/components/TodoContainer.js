@@ -51,7 +51,7 @@ const TodoContainer = () => {
       // id: uuid.v4(),
       id: uuidv4(),
       title: title,
-      completed: false,
+      status: "todo",
     };
     setTodos([...todos, newTodo]);
   };

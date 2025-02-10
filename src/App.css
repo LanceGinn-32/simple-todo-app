@@ -9,7 +9,7 @@ body {
   color: #1f1f1f;
 }
 .container {
-  max-width: 700px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 10px;
 }
@@ -58,4 +58,18 @@ body {
   float: right;
   outline: none;
   margin-left: 10px;
+}
+
+.todo-columns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.todo-list {
+  width: 400px;
+}
+
+.todo-item input {
+  width: 60%;
 }

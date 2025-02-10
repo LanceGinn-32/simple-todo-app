@@ -8,19 +8,19 @@ const TodoItemDisplay = ({ todo, deleteTodoProps, onEdit }) => {
     textDecoration: "line-through",
   };
 
-  const { completed, id, title } = todo;
+  const { status, id, title } = todo;
 
   return (
     <li className="todo-item">
       <button onClick={onEdit}>Edit</button>
       <button onClick={() => deleteTodoProps(id)}>Delete</button>
-      <span style={completed ? completedStyle : null}>{title}</span>
+      <span style={status === "done" ? completedStyle : null}>{title}</span>
     </li>
   );
 };
 
 const TodoItemEdit = ({ todo, onCancel, onSave }) => {
-  const { completed, id, title } = todo;
+  const { status, id, title } = todo;
 
   const [newTitle, setNewTitle] = useState(title);
 
