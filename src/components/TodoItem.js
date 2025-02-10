@@ -31,7 +31,12 @@ const TodoItemEdit = ({ todo, onCancel, onSave }) => {
 
   return (
     <li className="todo-item">
-      <input type="text" value={newTitle} onChange={handleInputChange} />
+      <input
+        type="text"
+        className="input-edit"
+        value={newTitle}
+        onChange={handleInputChange}
+      />
       <select value={newStatus} onChange={(e) => setNewStatus(e.target.value)}>
         <option value="todo">Todo</option>
         <option value="in-progress">In Progress</option>
