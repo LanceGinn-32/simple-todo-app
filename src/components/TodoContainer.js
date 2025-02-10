@@ -11,32 +11,21 @@ const TodoContainer = () => {
       // id: uuid.v4(),
       id: uuidv4(),
       title: "Setup development environment",
-      completed: true,
+      status: "todo",
     },
     {
       // id: uuid.v4(),
       id: uuidv4(),
       title: "Develop website and add content",
-      completed: false,
+      status: "in-progress",
     },
     {
       // id: uuid.v4(),
       id: uuidv4(),
       title: "Deploy to live server",
-      completed: false,
+      status: "done",
     },
   ]);
-
-  const handleChange = (id) => {
-    setTodos(
-      todos.map((todo) => {
-        if (todo.id === id) {
-          todo.completed = !todo.completed;
-        }
-        return todo;
-      })
-    );
-  };
 
   const updateTodo = (id, newTitle) => {
     setTodos(
@@ -71,12 +60,23 @@ const TodoContainer = () => {
     <div className="container">
       <Header />
       <InputTodo addTodoProps={addTodoItem} />
-      <TodosList
-        todos={todos}
-        updateTodo={updateTodo}
-        handleChangeProps={handleChange}
-        deleteTodoProps={delTodo}
-      />
+      <div class="todo-columns">
+        <TodosList
+          todos={todos.filter(({ status }) => status === "todo")}
+          updateTodo={updateTodo}
+          deleteTodoProps={delTodo}
+        />
+        <TodosList
+          todos={todos.filter(({ status }) => status === "in-progress")}
+          updateTodo={updateTodo}
+          deleteTodoProps={delTodo}
+        />
+        <TodosList
+          todos={todos.filter(({ status }) => status === "done")}
+          updateTodo={updateTodo}
+          deleteTodoProps={delTodo}
+        />
+      </div>
     </div>
   );
 };

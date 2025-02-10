@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 
-const TodoItemDisplay = ({
-  todo,
-  handleChangeProps,
-  deleteTodoProps,
-  onEdit,
-}) => {
+const TodoItemDisplay = ({ todo, deleteTodoProps, onEdit }) => {
   const completedStyle = {
     fontStyle: "italic",
     color: "#d35e0f",
@@ -17,11 +12,6 @@ const TodoItemDisplay = ({
 
   return (
     <li className="todo-item">
-      <input
-        type="checkbox"
-        checked={completed}
-        onChange={() => handleChangeProps(id)}
-      />
       <button onClick={onEdit}>Edit</button>
       <button onClick={() => deleteTodoProps(id)}>Delete</button>
       <span style={completed ? completedStyle : null}>{title}</span>
@@ -47,7 +37,7 @@ const TodoItemEdit = ({ todo, onCancel, onSave }) => {
   );
 };
 
-const TodoItem = ({ todo, handleChangeProps, deleteTodoProps, updateTodo }) => {
+const TodoItem = ({ todo, deleteTodoProps, updateTodo }) => {
   const [isEditing, setIsEditing] = useState(false);
 
   const onSave = (id, newTitle) => {
@@ -58,14 +48,12 @@ const TodoItem = ({ todo, handleChangeProps, deleteTodoProps, updateTodo }) => {
   return isEditing ? (
     <TodoItemEdit
       todo={todo}
-      handleChangeProps={handleChangeProps}
       onCancel={() => setIsEditing(false)}
       onSave={onSave}
     />
   ) : (
     <TodoItemDisplay
       todo={todo}
-      handleChangeProps={handleChangeProps}
       deleteTodoProps={deleteTodoProps}
       onEdit={() => setIsEditing(true)}
     />
