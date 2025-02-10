@@ -23,6 +23,7 @@ const TodoItemEdit = ({ todo, onCancel, onSave }) => {
   const { status, id, title } = todo;
 
   const [newTitle, setNewTitle] = useState(title);
+  const [newStatus, setNewStatus] = useState(status);
 
   const handleInputChange = (e) => {
     setNewTitle(e.target.value);
@@ -31,7 +32,12 @@ const TodoItemEdit = ({ todo, onCancel, onSave }) => {
   return (
     <li className="todo-item">
       <input type="text" value={newTitle} onChange={handleInputChange} />
-      <button onClick={() => onSave(id, newTitle)}>Save</button>
+      <select value={newStatus} onChange={(e) => setNewStatus(e.target.value)}>
+        <option value="todo">Todo</option>
+        <option value="in-progress">In Progress</option>
+        <option value="done">Done</option>
+      </select>
+      <button onClick={() => onSave(id, newTitle, newStatus)}>Save</button>
       <button onClick={onCancel}>Cancel</button>
     </li>
   );
@@ -40,8 +46,8 @@ const TodoItemEdit = ({ todo, onCancel, onSave }) => {
 const TodoItem = ({ todo, deleteTodoProps, updateTodo }) => {
   const [isEditing, setIsEditing] = useState(false);
 
-  const onSave = (id, newTitle) => {
-    updateTodo(id, newTitle);
+  const onSave = (id, newTitle, newStatus) => {
+    updateTodo(id, newTitle, newStatus);
     setIsEditing(false);
   };
 
