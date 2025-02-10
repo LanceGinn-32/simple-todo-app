@@ -63,16 +63,19 @@ const TodoContainer = () => {
       <InputTodo addTodoProps={addTodoItem} />
       <div class="todo-columns">
         <TodosList
+          title={"Todo"}
           todos={todos.filter(({ status }) => status === "todo")}
           updateTodo={updateTodo}
           deleteTodoProps={delTodo}
         />
         <TodosList
+          title={"In Progress"}
           todos={todos.filter(({ status }) => status === "in-progress")}
           updateTodo={updateTodo}
           deleteTodoProps={delTodo}
         />
         <TodosList
+          title={"Done"}
           todos={todos.filter(({ status }) => status === "done")}
           updateTodo={updateTodo}
           deleteTodoProps={delTodo}

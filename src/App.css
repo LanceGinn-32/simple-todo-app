@@ -67,9 +67,10 @@ body {
 }
 
 .todo-list {
+  margin-top: 20px;
   width: 400px;
 }
 
 .todo-item input {
-  width: 60%;
+  width: 40%;
 }
