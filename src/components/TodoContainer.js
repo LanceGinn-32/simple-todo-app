@@ -28,20 +28,33 @@ const TodoContainer = () => {
   ]);
 
   const handleChange = (id) => {
-    setTodos(todos.map((todo) => {
+    setTodos(
+      todos.map((todo) => {
         if (todo.id === id) {
           todo.completed = !todo.completed;
         }
         return todo;
-      }));
+      })
+    );
+  };
+
+  const updateTodo = (id, newTitle) => {
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id === id) {
+          todo.title = newTitle;
+        }
+        return todo;
+      })
+    );
   };
 
   const delTodo = (id) => {
     setTodos([
-        ...todos.filter((todo) => {
-          return todo.id !== id;
-        }),
-      ]);
+      ...todos.filter((todo) => {
+        return todo.id !== id;
+      }),
+    ]);
   };
 
   const addTodoItem = (title) => {
@@ -54,16 +67,17 @@ const TodoContainer = () => {
     setTodos([...todos, newTodo]);
   };
 
-    return (
-      <div className="container">
-        <Header />
-        <InputTodo addTodoProps={addTodoItem} />
-        <TodosList
-          todos={todos}
-          handleChangeProps={handleChange}
-          deleteTodoProps={delTodo}
-        />
-      </div>
-    );
-}
+  return (
+    <div className="container">
+      <Header />
+      <InputTodo addTodoProps={addTodoItem} />
+      <TodosList
+        todos={todos}
+        updateTodo={updateTodo}
+        handleChangeProps={handleChange}
+        deleteTodoProps={delTodo}
+      />
+    </div>
+  );
+};
 export default TodoContainer;
